@@ -7,15 +7,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f683ca90-c958-4021-bb2f-461201096ddd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/servlet/AdminFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/servlet/IndexFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/student/itemInfo.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/register.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/admin/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/login.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/login.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/register.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/register.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,8 +23,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Jsp File" />
         <option value="Class" />
+        <option value="Jsp File" />
       </list>
     </option>
   </component>
@@ -217,7 +214,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575943823350</updated>
       <workItem from="1575943826915" duration="12261000" />
-      <workItem from="1576081543446" duration="1281000" />
+      <workItem from="1576081543446" duration="2100000" />
     </task>
     <servers />
   </component>

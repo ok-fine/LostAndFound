@@ -9,6 +9,13 @@
 <html>
 <head>
     <title>管理员页面</title>
+
+    <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="../css/font/font-awesome.css" rel="stylesheet" />
+    <link type="text/css" href="../css/style.css" rel="stylesheet" />
+
+    <link type="text/css" href="../css/plugins/iCheck/custom.css" rel="stylesheet"/>
+    <link type="text/css" href="../css/plugins/footable/footable.core.css" rel="stylesheet"/>
 </head>
 <body>
 
@@ -16,9 +23,14 @@
     User user = (User) session.getAttribute("user");
 
     String[][] orders = (String[][]) request.getAttribute("orders");
+//    int length = 0;
     int length = Integer.parseInt(orders[2][0]);
 
 %>
+
+<% if(orders == null){ %>
+null<br>
+<%    } %>
 
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
