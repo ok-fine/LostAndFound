@@ -39,15 +39,9 @@
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="Name" name="name" required=""/>
             </div>
-<%--            <div class="form-group">--%>
-<%--                <input type="email" class="form-control" placeholder="Email" name="email" required=""/>--%>
-<%--            </div>--%>
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="Password" name="password" required=""/>
             </div>
-<%--            <div class="form-group">--%>
-<%--                <input type="text" class="form-control" placeholder="真实姓名" name="realName" required=""/>--%>
-<%--            </div>--%>
             <div class="form-group">
                 <input type="text" class="form-control" placeholder="联系方式" name="tel" required=""/>
             </div>

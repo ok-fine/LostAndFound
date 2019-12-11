@@ -16,7 +16,7 @@ public class User {
         return this.no;
     }
 
-    public String getName(String name){
+    public String getName(){
         return this.name;
     }
 

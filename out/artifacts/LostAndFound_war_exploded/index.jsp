@@ -10,19 +10,10 @@
   <head>
     <title>湖南大学失物招领</title>
   </head>
-  <body>
-  <a href="login.jsp">
-    <% String login = (String) session.getAttribute("login");
-      if( login != "1" ){ %>
-登陆
-    <% } else {  %>
-退出
-    <% }  %>
-  </a><br>
+  <body class="gray-bg">
 
+  <a href="login.jsp">登陆</a><br>
   欢迎来到湖南大学失物招领处<br>
-
-  <a href=""
 
   </body>
 </html>

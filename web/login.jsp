@@ -36,10 +36,10 @@
         <div>
             <h2 class="logo-name">HNU</h2>
         </div>
-        <!--<h3>Welcome to XXX</h3>-->
-        <p>
-            Lost And Found for HNU
-        </p>
+        <h3>Lost And Found</h3>
+        <%--        <p>--%>
+        <%--            Lost And Found for HNU--%>
+        <%--        </p>--%>
         <p>Login in. To see it in action.</p>
         <form class="m-t" role="form" action="LoginServlet" method="get">
             <div class="form-group">
@@ -47,6 +47,9 @@
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" placeholder="password" name="password" required="" />
+            </div>
+            <div class="form-group">
+                <div class="checkbox i-checks"><label> <input type="checkbox" name="admin"/><i></i> Are you a administrator？ </label></div>
             </div>
             <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
             <a href="#"><small>Forgot password?</small></a>
