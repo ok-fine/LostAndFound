@@ -2,6 +2,7 @@ package entity;
 
 import db.*;
 
+import javax.servlet.http.HttpSession;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -64,7 +65,7 @@ public class User {
     public boolean register() throws SQLException {
         DBBean db = new DBBean();
         String sql = "INSERT INTO user_info(user_name, password, tel) " +
-                "VALUES(" + this.name + ", " + this.password + ", " + this.tel + ")";
+                "VALUES(\'" + this.name + "\', \'" + this.password + "\', \'" + this.tel + "\')";
         System.out.println(sql);
 
         //不可以使用重复的名字
@@ -122,6 +123,47 @@ public class User {
 
             return false;
         }
+    }
+
+    //root = 0,普通用户     root = 1，管理员
+    public boolean login(String root){
+        DBBean db = new DBBean();
+
+        String sql = "";
+        if( root != null && root.equals("on")){
+            sql = "SELECT * FROM admin_info WHERE admin_name = \'" + this.name
+                    + "\' AND password = \'" + this.password + "\'";
+        }else {
+            sql = "SELECT * FROM user_info WHERE user_name = \'" + this.name
+                    + "\' AND password = \'" + this.password + "\'";
+        }
+        System.out.println(sql);
+
+        if(this.name == null || this.password == null){
+            return false;
+        }else {
+            try {
+                ResultSet rset = db.select(sql);
+                if(rset.next()){
+                    setNo(rset.getInt(1));
+                    setTel(rset.getString(4));
+                    return true;
+                }else {
+                    return false;
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }finally {
+                db.closeAll();
+            }
+
+            return false;
+        }
+    }
+
+    public void exit(HttpSession session){
+        session.setAttribute("login", "-1");
     }
 
 }

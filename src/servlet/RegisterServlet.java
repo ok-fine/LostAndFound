@@ -1,5 +1,6 @@
 package servlet;
 
+import entity.Item;
 import entity.User;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+
 
 @WebServlet("/RegisterServlet")
 public class RegisterServlet extends HttpServlet {
@@ -37,7 +39,6 @@ public class RegisterServlet extends HttpServlet {
 //        System.out.println("name" + name);
 //        System.out.println("password" + password);
         HttpSession session = request.getSession();
-
         User user = new User();
         user.setName(name);
         user.setPassword(password);
@@ -46,8 +47,10 @@ public class RegisterServlet extends HttpServlet {
         if(user.register()){
             session.setAttribute("user", user);
             session.setAttribute("login", "1");
+            session.setAttribute("admin", "0");
 
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+//            request.getRequestDispatcher("/student/itemInfo.jsp?page=0").forward(request, response);
+            response.sendRedirect(((HttpServletRequest) request).getContextPath() + "/student/itemInfo.jsp?page=0");
         }else {
             session.setAttribute("login", "3");
             request.getRequestDispatcher("/register.jsp").forward(request, response);

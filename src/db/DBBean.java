@@ -85,7 +85,7 @@ public class DBBean {
 
     //sql一般未查询语句
     //为了能处理返回的rset所以此处不需要final close（）；
-    public static ResultSet select(String sql) {
+    public ResultSet select(String sql) {
 //        Connection conn = null;
 //        Statement stmt = null;
 //        ResultSet rset = null;
@@ -154,7 +154,7 @@ public class DBBean {
         }
     }
 
-    public static void closeAll() {
+    public void closeAll() {
         /*
         不能放到同一个try、catch语句中：
         如果某一个在close过程中出现异常抛出，后面的将无法关闭资源

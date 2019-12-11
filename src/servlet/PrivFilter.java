@@ -5,6 +5,10 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import db.DBBean;
 import entity.User;
 
 //@WebFilter(filterName = "PrivFilter")
@@ -26,13 +30,6 @@ public class PrivFilter implements Filter {
         System.out.println("url：" + url);
 
         session.setAttribute("login", "-1");
-
-        //在首页的是否需要筛选出所有信息
-        if(url == "/" || url == "/index.jsp"){
-            
-        }
-
-//        User user = (User) session.getAttribute("user");
         String login = (String) session.getAttribute("login");
 
 //        if (login != "1" ) {
