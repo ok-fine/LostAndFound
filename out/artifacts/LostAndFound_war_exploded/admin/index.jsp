@@ -28,10 +28,6 @@
 
 %>
 
-<% if(orders == null){ %>
-null<br>
-<%    } %>
-
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
     <div id="page-wrapper" class="gray-bg">
@@ -96,7 +92,7 @@ null<br>
                                             &nbsp;&nbsp;
                                             <%--                                            <a href="ApplyServlet?apply_no=<%=orders[i][0]%>&opt=refuse" title="拒绝"><i--%>
                                             <%--                                                    class="glyphicon glyphicon-search"></i></a>--%>
-                                            <a href="index.jsp" title="拒绝"><i
+                                            <a href="index.jsp?page=<%=request.getParameter("page")%>" title="拒绝"><i
                                                     class="glyphicon glyphicon-plus"></i></a>
                                             &nbsp;&nbsp;
                                         </td>
@@ -104,7 +100,7 @@ null<br>
                                             &nbsp;&nbsp;
 <%--                                            <a href="'${pageContext.request.contextPath}/ApplyServlet?apply_no=<%=orders[i][0]%>&opt=pass" title="通过"><i--%>
 <%--                                                    class="glyphicon glyphicon-plus"></i></a>--%>
-                                            <a href="index.jsp" title="通过"><i
+                                            <a href="index.jsp?page=<%=request.getParameter("page")%>" title="通过"><i
                                                         class="glyphicon glyphicon-plus"></i></a>
                                             &nbsp;&nbsp;
                                         </td>

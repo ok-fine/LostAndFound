@@ -7,11 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f683ca90-c958-4021-bb2f-461201096ddd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/servlet/AdminFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/servlet/IndexFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/student/itemInfo.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/servlet/ApplyServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/web/student/applyFor.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/LostAndFound_war_exploded/admin/index.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/admin/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/admin/index.jsp" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -214,7 +212,7 @@
       <option name="presentableId" value="Default" />
       <updated>1575943823350</updated>
       <workItem from="1575943826915" duration="12261000" />
-      <workItem from="1576081543446" duration="2100000" />
+      <workItem from="1576081543446" duration="2432000" />
     </task>
     <servers />
   </component>
