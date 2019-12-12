@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 import entity.Item;
 
-@WebFilter("/student/itemInfo.jsp")
+@WebFilter("/admin/itemInfo.jsp")
 public class IndexFilter implements Filter {
     public void destroy() {
     }
@@ -17,6 +17,8 @@ public class IndexFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
+
+        System.out.println("getContextPath" + req.getContextPath());
 
         int page = Integer.parseInt(request.getParameter("page"));
         String[][] items;
