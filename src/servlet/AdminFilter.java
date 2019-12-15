@@ -26,7 +26,7 @@ public class AdminFilter implements Filter {
         System.out.println("admin filter:" + page);
 
         try {
-            orders = Application.oeders(page, user.getNo());
+            orders = Application.orders(page, user.getNo());
             request.setAttribute("orders", orders);
 
             System.out.println("filteritems" + orders[2][0]);

@@ -25,13 +25,14 @@ public class Item {
     public static int getAdmin(int no) throws SQLException {
         DBBean db = new DBBean();
         int admin_no = 0;
-        String sql = "SELECT admin_no FROM address AS a, item_info AS i " +
-                "WHERE i.item_no = " + no + "AND a.address_no = i.address_no";
+        String sql = "SELECT admin_no FROM item_info WHERE item_no = " + no;
 
         ResultSet rset = db.select(sql);
         if(rset.next()){
             admin_no = rset.getInt(1);
         }
+
+        System.out.println("admin_no:" + admin_no);
 
         db.closeAll();
         return admin_no;
@@ -52,15 +53,16 @@ public class Item {
         return DBBean.update(sql) != 0;
     }
 
+
     //获取所有的待认领物品
     public static String[][] items(int start) throws SQLException {
         int pageNum = 2;
 
         DBBean db = new DBBean();
-        String sql = "SELECT i.item_no, i.name, description, time, a.address, m.admin_name, m.tel " +
+        String sql = "SELECT i.item_no, i.name, description, time, a.address, m.admin_name, m.tel, m.admin_no " +
                 "FROM item_info AS i, address AS a, admin_info AS m WHERE status = '待认领' AND " +
                 "i.address_no = a.address_no AND i.admin_no = m.admin_no " +
-                "ORDER BY time DESC LIMIT " + start + ", " + (start + pageNum);
+                "ORDER BY time DESC LIMIT " + start + ", " + pageNum;
 
         System.out.println(sql);
 
@@ -70,7 +72,7 @@ public class Item {
         //初始化数组
         String[][] items = new String[pageNum + 1][];
         for(int j = 0 ; j <= pageNum; j++){
-            items[j] = new String[]{"0", "0", "0", "0", "0", "0", "0"};
+            items[j] = new String[]{"0", "0", "0", "0", "0", "0", "0", "0"};
         }
         int i = 0;
         while (rset.next()){
@@ -81,6 +83,7 @@ public class Item {
             items[i][4] = rset.getString(5);
             items[i][5] = rset.getString(6);
             items[i][6] = rset.getString(7);
+            items[i][7] = rset.getString(8);
             i++;
         }
 

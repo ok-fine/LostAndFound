@@ -9,8 +9,8 @@ import java.sql.SQLException;
 
 import entity.Item;
 
-@WebFilter("/admin/itemInfo.jsp")
-public class IndexFilter implements Filter {
+@WebFilter("/student/itemInfo.jsp")
+public class StuItemInfoFilter implements Filter {
     public void destroy() {
     }
 

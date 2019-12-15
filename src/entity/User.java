@@ -50,16 +50,19 @@ public class User {
         setTel(tel);
     }
 
-    public void changeInfo(){
+    public void changeInfo(int no, String name, String password, String tel){
         DBBean db = new DBBean();
-        String sql = "UPDATE user_info SET user_name = \'" + this.name
-                + "\', password = \'" + this.password
-                + "\', tel = \'" + this.tel + "\'";
+        String sql = "UPDATE user_info SET user_name = \'" + name
+                + "\', password = \'" + password
+                + "\', tel = \'" + tel + "\' WHERE user_no = " + no;
         System.out.println(sql);
 
         int result = db.update(sql);
         System.out.println(result);
-//        return result;
+
+        setName(name);
+        setPassword(password);
+        setTel(tel);
     }
 
     public boolean register() throws SQLException {

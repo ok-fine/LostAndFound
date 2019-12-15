@@ -1,3 +1,4 @@
+<%--<jsp:useBean id="orders" scope="" type="java.util.List"/>--%>
 <%@ page import="entity.User" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
@@ -8,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>管理员页面</title>
+    <title>申请审核</title>
 
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../css/font/font-awesome.css" rel="stylesheet" />
@@ -21,12 +22,13 @@
 
 <%
     User user = (User) session.getAttribute("user");
+    int start = Integer.parseInt(request.getParameter("page"));
 
     String[][] orders = (String[][]) request.getAttribute("orders");
-//    int length = 0;
     int length = Integer.parseInt(orders[2][0]);
 
 %>
+
 
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
@@ -75,7 +77,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <% if(length == 0) { %>
+                                    <% if(length == 0 && start == 0) { %>
                                     <tr>
                                         <td colspan="8">暂时没有认领申请</td>
                                     </tr>
@@ -90,24 +92,19 @@
                                         <td><%=orders[i][6]%></td>
                                         <td>
                                             &nbsp;&nbsp;
-                                            <%--                                            <a href="ApplyServlet?apply_no=<%=orders[i][0]%>&opt=refuse" title="拒绝"><i--%>
-                                            <%--                                                    class="glyphicon glyphicon-search"></i></a>--%>
-                                            <a href="index.jsp?page=<%=request.getParameter("page")%>" title="拒绝"><i
-                                                    class="glyphicon glyphicon-plus"></i></a>
+                                            <a href="${pageContext.request.contextPath}/ApplyServlet?apply_no=<%=orders[i][0]%>&opt=refuse" title="拒绝">
+                                                <i class="glyphicon glyphicon-search"></i></a>
                                             &nbsp;&nbsp;
                                         </td>
                                         <td>
                                             &nbsp;&nbsp;
-<%--                                            <a href="'${pageContext.request.contextPath}/ApplyServlet?apply_no=<%=orders[i][0]%>&opt=pass" title="通过"><i--%>
-<%--                                                    class="glyphicon glyphicon-plus"></i></a>--%>
-                                            <a href="index.jsp?page=<%=request.getParameter("page")%>" title="通过"><i
-                                                        class="glyphicon glyphicon-plus"></i></a>
+                                                <a href="${pageContext.request.contextPath}/ApplyServlet?apply_no=<%=orders[i][0]%>&opt=pass" title="通过">
+                                                    <i class="glyphicon glyphicon-plus"></i></a>
                                             &nbsp;&nbsp;
                                         </td>
                                     </tr>
                                     <% }
                                     }
-                                        int start = Integer.parseInt(request.getParameter("page"));
                                         int front = start - 2;
                                         if(front < 0) front = 0;
                                         int next = start + 2;

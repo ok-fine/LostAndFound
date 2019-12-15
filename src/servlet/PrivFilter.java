@@ -25,6 +25,8 @@ public class PrivFilter implements Filter {
         HttpSession session = (req).getSession();
         String url = req.getRequestURI().substring(req.getContextPath().length());
 
+//        session.setAttribute("pageNum", 2);
+
 //        System.out.println("RequestURI:" + req.getRequestURI());
 //        System.out.println("getContextPath:" + req.getContextPath());
         System.out.println("url：" + url);

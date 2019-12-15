@@ -49,21 +49,22 @@ public class LoginServlet extends HttpServlet {
 //        System.out.println("getContextPath:" + req.getContextPath());
 
         if(user.login(admin)){
-            //admin用on和null来表示
-            if(admin != null) {
-                session.setAttribute("admin", "1");
-            }else {
-                session.setAttribute("admin", "0");
-            }
-
             System.out.println("login success");
             session.setAttribute("login", "1");
             session.setAttribute("user", user);
 
-            session.setAttribute("length", 100);
+            //admin用on和null来表示
+            if(admin != null) {
+                session.setAttribute("admin", "1");
 
-//            request.getRequestDispatcher("/student/itemInfo.jsp?page=-1").forward(request, response);
-            response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=0");
+                //page:页数，mine：-1全看，1只看我的
+                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/admin/itemInfo.jsp?page=0&mine=-1");
+            }else {
+                session.setAttribute("admin", "0");
+//                request.getRequestDispatcher("/student/itemInfo.jsp?page=-1").forward(request, response);
+                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=0");
+            }
+
         }else {
             System.out.println("login failed");
             session.setAttribute("login", "0");
