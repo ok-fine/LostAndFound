@@ -29,7 +29,6 @@
 
 %>
 
-
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
     <div id="page-wrapper" class="gray-bg">
@@ -39,7 +38,7 @@
                 <h2>欢迎管理员<%=user.getName()%></h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="../student/itemInfo.jsp?page=0">首页</a>
+                        <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=-1">首页</a>
                     </li>
                     <li class="active">
                         <strong>认领审核</strong>

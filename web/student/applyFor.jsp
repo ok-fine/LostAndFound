@@ -39,7 +39,7 @@
     <form action="${pageContext.request.contextPath}/ApplyServlet?page=<%=request.getParameter("page")%>&type=<%=request.getParameter("type")%>" method="post">
         <input type="hidden" name="item_no" value="<%=request.getParameter("item_no")%>">
         <label>认领描述：<textarea name="reason" placeholder="请对物品进行一定的描述"></textarea></label><br>
-        <label>预计认领时间：<input type="text" name="g_time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})"></label>
+        <label>预计认领时间：<input type="text" name="g_time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})"></label><br>
         <input type="submit" value="提交">
     </form>
 </div>

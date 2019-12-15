@@ -26,7 +26,8 @@ public class StuItemInfoFilter implements Filter {
         System.out.println("itemInfo filter:" + page);
 
         try {
-            items = Item.items(page);
+            //得到千古的item
+            items = Item.items(page, 1, 0);
             request.setAttribute("items", items);
 
             System.out.println("filteritems" + items[2][0]);

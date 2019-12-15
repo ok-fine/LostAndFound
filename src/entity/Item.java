@@ -53,16 +53,39 @@ public class Item {
         return DBBean.update(sql) != 0;
     }
 
+    public static int publish(String name, String description, String time, int address_no, int admin_no) throws SQLException {
+        int no = 0;
+        DBBean db = new DBBean();
+        String sql = "INSERT INTO item_info(name, description, time, address_no, admin_no) " +
+                "VALUES('" + name + "', '" + description + "', '" + time + "', " + address_no + ", " + admin_no + ")";
+
+        ResultSet rset = db.insert(sql);
+        while(rset.next()){
+            no = rset.getInt(1);
+        }
+        db.closeAll();
+
+        return no;
+    }
 
     //获取所有的待认领物品
-    public static String[][] items(int start) throws SQLException {
+    public static String[][] items(int start, int mine, int admin_no) throws SQLException {
         int pageNum = 2;
 
         DBBean db = new DBBean();
-        String sql = "SELECT i.item_no, i.name, description, time, a.address, m.admin_name, m.tel, m.admin_no " +
-                "FROM item_info AS i, address AS a, admin_info AS m WHERE status = '待认领' AND " +
-                "i.address_no = a.address_no AND i.admin_no = m.admin_no " +
-                "ORDER BY time DESC LIMIT " + start + ", " + pageNum;
+        String sql;
+        //1 - 全部，-1 - 我的
+        if(mine == 1){
+            sql = "SELECT i.item_no, i.name, description, time, a.address, m.admin_name, m.tel, m.admin_no " +
+                    "FROM item_info AS i, address AS a, admin_info AS m WHERE status = '待认领' AND " +
+                    "i.address_no = a.address_no AND i.admin_no = m.admin_no " +
+                    "ORDER BY time DESC LIMIT " + start + ", " + pageNum;
+        }else{
+            sql = "SELECT i.item_no, i.name, description, time, a.address, m.admin_name, m.tel, m.admin_no " +
+                    "FROM item_info AS i, address AS a, admin_info AS m WHERE status = '待认领' AND " +
+                    "i.admin_no = " + admin_no + " AND i.address_no = a.address_no AND i.admin_no = m.admin_no " +
+                    "ORDER BY time DESC LIMIT " + start + ", " + pageNum;
+        }
 
         System.out.println(sql);
 

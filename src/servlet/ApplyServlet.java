@@ -69,7 +69,7 @@ public class ApplyServlet extends HttpServlet {
         if(opt.equals("pass")){
             try {
                 Application.pass(apply_no, user.getNo());
-                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=0");
+                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/index.jsp?page=0");
             } catch (SQLException e) {
                 e.printStackTrace();
             }

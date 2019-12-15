@@ -8,12 +8,17 @@ import java.sql.SQLException;
 
 public class User {
     private int no;
+    private int address_no;
     private String name;
     private String password;
     private String tel;
 
     public int getNo(){
         return this.no;
+    }
+
+    public int getAddress_no() {
+        return address_no;
     }
 
     public String getName(){
@@ -42,6 +47,15 @@ public class User {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public void setAddress_no() throws SQLException {
+        DBBean db = new DBBean();
+        String sql = "SELECT address_no FROM address WHERE admin_no = " + this.no;
+        ResultSet rset = db.select(sql);
+        while(rset.next()){
+            this.address_no = rset.getInt(1);
+        }
     }
 
     public void setInfo(String name, String password, String tel){

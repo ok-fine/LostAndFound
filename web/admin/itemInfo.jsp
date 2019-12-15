@@ -11,7 +11,6 @@
 <head>
     <title>管理员中心</title>
 </head>
-<body>
 <body class="gray-bg">
 
 <%
@@ -23,15 +22,26 @@
 
     String login = (String) session.getAttribute("login");
     String admin = (String) session.getAttribute("admin");
-    int mine = (int) session.getAttribute("mine");
+    int mine = Integer.parseInt(request.getParameter("mine"));
+    //1 - 全部， -1 我的
+
+    String success = request.getParameter("success");
+    if(success != null){
 %>
+<script>
+    alert("发布成功")
+</script>
+<%  }  %>
 
 欢迎来到湖南大学失物招领处<br>
 
-<a href="${pageContext.request.contextPath}/login.jsp" onclick="user.exit()">退出</a><br>
+<a href="${pageContext.request.contextPath}/login.jsp" onclick="user.exit()">退出登陆</a><br>
+<a href="${pageContext.request.contextPath}/login.jsp" onclick="user.exit()">退出登陆</a>
+ /
+<a href="${pageContext.request.contextPath}/admin/publish.jsp">发布招领</a><br>
 <%--<a href="${pageContext.request.contextPath}/admin/manage.jsp">申请管理</a>--%>
-<a href="${pageContext.request.contextPath}/admin/index.jsp">认领审核</a>
-&nbsp;/&nbsp;
+<a href="${pageContext.request.contextPath}/admin/index.jsp?page=0">认领审核</a>
+ /
 <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=<%=-1 * mine%>">只看我的</a>
 
 <table border="1">
@@ -56,9 +66,9 @@
     <%
         } else {
         for(int i = 0 ; i < length ; i++){
-            if(mine == 1 && !items[i][7].equals(String.valueOf(user.getNo()))){
-                continue;
-            } else {
+//            if(mine == 1 && !items[i][7].equals(String.valueOf(user.getNo()))){
+//                continue;
+//            } else {
     %>
             <tr>
                 <td><%=items[i][1]%></td>

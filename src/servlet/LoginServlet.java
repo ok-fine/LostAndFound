@@ -57,12 +57,15 @@ public class LoginServlet extends HttpServlet {
             if(admin != null) {
                 session.setAttribute("admin", "1");
 
+                //找到管理员对应的管理地址编号
+                user.setAddress_no();
+
                 //page:页数，mine：-1全看，1只看我的
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/admin/itemInfo.jsp?page=0&mine=-1");
             }else {
                 session.setAttribute("admin", "0");
 //                request.getRequestDispatcher("/student/itemInfo.jsp?page=-1").forward(request, response);
-                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=0");
+                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=0&mine=-1");
             }
 
         }else {
