@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>申请审核</title>
+    <title>认领审核</title>
 
     <link type="text/css" href="../css/bootstrap.min.css" rel="stylesheet" />
     <link type="text/css" href="../css/font/font-awesome.css" rel="stylesheet" />
@@ -35,10 +35,13 @@
         <div class="border-bottom" th:include="header :: headerTop"></div>
         <div class="row wrapper border-bottom white-bg page-heading" th:fragment="headerNav">
             <div class="col-lg-10">
-                <h2>欢迎管理员<%=user.getName()%></h2>
+                <h2>认领审核</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=-1">首页</a>
+                        <a href="${pageContext.request.contextPath}/login.jsp" onclick="user.exit()">退出登陆</a>
+                    </li>
+                    <li >
+                        <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=-1">失物展示</a>
                     </li>
                     <li class="active">
                         <strong>认领审核</strong>
@@ -48,7 +51,6 @@
             <div class="col-lg-2">
             </div>
         </div>
-
         <div class="wrapper wrapper-content animated fadeInRight">
             <div class="row">
                 <div class="col-lg-12">

@@ -38,6 +38,31 @@ public class Item {
         return admin_no;
     }
 
+    public static String[] getInfo(int no) throws SQLException {
+        String[] info = new String[]{"0", "0", "0", "0", "0", "0"};
+
+        DBBean db = new DBBean();
+        String sql = "SELECT i.name, i.description, i.time, a.address, m.admin_name, m.tel " +
+                "FROM item_info AS i, address AS a, admin_info AS m WHERE item_no = " + no +
+                " AND a.address_no = i.address_no AND m.admin_no = i.admin_no";
+
+        ResultSet rset = db.select(sql);
+        if(rset.next()){
+            info[0] = rset.getString(1);
+            info[1] = rset.getString(2);
+            info[2] = rset.getString(3);
+            info[3] = rset.getString(4);
+            info[4] = rset.getString(5);
+            info[5] = rset.getString(6);
+        }
+
+        System.out.println("认领失物名称：" + info[0]);
+
+        db.closeAll();
+
+        return info;
+    }
+
     //认领物品
     public static boolean claim(int no){
         DBBean db = new DBBean();
