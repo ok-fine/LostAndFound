@@ -78,6 +78,7 @@ public class Item {
         return DBBean.update(sql) != 0;
     }
 
+    //发布失物
     public static int publish(String name, String description, String time, int address_no, int admin_no) throws SQLException {
         int no = 0;
         DBBean db = new DBBean();
@@ -91,6 +92,13 @@ public class Item {
         db.closeAll();
 
         return no;
+    }
+
+    //修改失物
+    public static void edit(String no, String name, String description, String time) throws SQLException {
+        String sql = "UPDATE item_info SET name = '" + name + "', description = '" + description + "', " +
+                "time = '" + time + "' WHERE item_no = " + no;
+        DBBean.update(sql);
     }
 
     //获取所有的待认领物品
@@ -131,7 +139,7 @@ public class Item {
             items[i][4] = rset.getString(5);
             items[i][5] = rset.getString(6);
             items[i][6] = rset.getString(7);
-            items[i][7] = rset.getString(8);
+            items[i][7] = String.valueOf(rset.getInt(8));
             i++;
         }
 

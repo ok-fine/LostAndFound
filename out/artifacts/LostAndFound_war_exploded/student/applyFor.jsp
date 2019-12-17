@@ -1,5 +1,6 @@
 <%@ page import="org.omg.PortableInterceptor.INACTIVE" %>
-<%@ page import="entity.Item" %><%--
+<%@ page import="entity.Item" %>
+<%@ page import="java.sql.SQLException" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/12
@@ -21,13 +22,14 @@
 </head>
 <body>
 
-填写认领申请<br>
-
-<%--<th><%=request.getParameter("item_no")%></th><br>--%>
-
 <%
     int item_no = Integer.parseInt(request.getParameter("item_no"));
-    String[] info = Item.getInfo(item_no);
+    String[] info = new String[0];
+    try {
+        info = Item.getInfo(item_no);
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
 %>
 
 <div id="wrapper">
@@ -39,11 +41,7 @@
                 <h2>认领申请</h2>
                 <ol class="breadcrumb">
                     <li>
-                        <% if(request.getParameter("type") != null){ %>
-                        <a href="${pageContext.request.contextPath}/student/userInfo.jsp?page=<%=request.getParameter("page")%>&type=<%=request.getParameter("type")%>">返回</a>
-                        <% }else { %>
                         <a href="${pageContext.request.contextPath}/student/itemInfo.jsp?page=<%=request.getParameter("page")%>">返回</a>
-                        <% } %>
                     </li>
                     <li>
                         <a href="${pageContext.request.contextPath}/student/itemInfo.jsp?page=0">失物展示</a>
@@ -127,48 +125,31 @@
                             </div>
                         </div>
                         <div class="ibox-content">
-                            <div class="table-responsive">
-                                <form action="${pageContext.request.contextPath}/ApplyServlet?page=<%=request.getParameter("page")%>&type=<%=request.getParameter("type")%>" method="post">
-                                    <input type="hidden" name="item_no" value="<%=request.getParameter("item_no")%>">
+                            <div class="table-responsive" text-align="center">
+                                <form text-align="center" action="${pageContext.request.contextPath}/ApplyServlet?page=<%=request.getParameter("page")%>&type=<%=request.getParameter("type")%>" method="post">
+                                    <input type="hidden" name="item_no" value="<%=request.getParameter("item_no")%>"><br>
+                                    <br>
+                                    <table style="width: 60%; margin:0 auto;" class=" table table-bordered table-hover" data-page-size="10">
+                                        <tbody>
+                                        <tr>
+                                            <th style="width:10%;"><label for="des">认领描述：</label></th>
+                                            <th style="width:20%;"><textarea rows="5" id="des" name="reason" placeholder="请对物品进行一定的描述" required></textarea></th>
+                                        </tr>
 
-                                    <table class=" table table-bordered table-hover" data-page-size="10">
-<%--                                        <thead>--%>
-<%--                                        <tr style="text-align: center">--%>
-<%--                                            <th style="width:5%;">认领描述</th>--%>
-<%--                                            <th style="width:15%;">失物描述</th>--%>
-<%--                                            <th style="width:15%;">认领描述</th>--%>
-<%--                                            <th style="width:10%;">申请时间</th>--%>
-<%--                                            <th style="width:5%;">管理员姓名</th>--%>
-<%--                                            <th style="width:10%;">管理员电话</th>--%>
-<%--                                            <th style="width:5%;">状态</th>--%>
-<%--                                            <th style="width:10%;" colspan="2">操作</th>--%>
-<%--                                        </tr>--%>
-<%--                                    </thead>--%>
-
-                                    <tbody>
-                                    <tr style="text-align: center">
-                                        <th style="width:10%;"><label for="des">认领描述：</label></th>
-                                        <th style="width:20%;"><textarea id="des" name="reason" placeholder="请对物品进行一定的描述"></textarea></th>
-                                    </tr>
-
-                                    <tr style="text-align: center">
-                                        <div class="form-group">
+                                        <tr>
                                             <th><label for="time">预计认领时间：</label></th>
-                                            <th><input type="text" name="g_time" id="time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})"></th>
-                                        </div>
-<%--                                        <th><label for="time">预计认领时间：</label></th>--%>
-<%--                                        <th><input type="text" name="g_time" id="time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})"></th>--%>
-                                    </tr>
-                                    </tbody>
-
-                                    <tfoot>
+                                            <th><input type="text" name="g_time" id="time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})" required><br><br></th>
+    <%--                                        <th><label for="time">预计认领时间：</label></th>--%>
+    <%--                                        <th><input type="text" name="g_time" id="time" placeholder="xxxx-xx-xx xx:xx" onfocus="WdatePicker({dataFmt:'YYYY-MM-DD HH:mm'})"></th>--%>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <br>
                                     <div class="col-sm-offset-4 col-sm-3" style="margin-top: 15px;">
                                         <button class="btn btn-primary btn-block" type="submit"><i
                                                 class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;&nbsp;<strong>提交申请</strong>
                                         </button>
                                     </div>
-                                    </tfoot>
-                                </table>
                                 </form>
                             </div>
                         </div>

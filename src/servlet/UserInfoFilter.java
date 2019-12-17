@@ -1,6 +1,6 @@
 package servlet;
 
-import entity.Item;
+import entity.Application;
 import entity.User;
 
 import javax.servlet.*;
@@ -10,33 +10,34 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebFilter("/admin/itemInfo.jsp")
-public class AdmItemInfoFilter implements Filter {
+@WebFilter("/student/userInfo.jsp")
+public class UserInfoFilter implements Filter {
     public void destroy() {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("user");
-
-        System.out.println("getContextPath" + req.getContextPath());
 
         int page = Integer.parseInt(request.getParameter("page"));
-        int mine = Integer.parseInt(request.getParameter("mine"));
-        System.out.println("itemInfo filter:" + page);
+        String type = request.getParameter("type");
 
-        String item_no = request.getParameter("item_no");
-        if(item_no != null) {
-            Item.delete(Integer.parseInt(item_no));
+        //删除物品
+        String apply_no = request.getParameter("apply_no");
+        if(apply_no != null){
+            Application.delete(Integer.parseInt(apply_no));
         }
 
-        String[][] items;
-        try {
-            items = Item.items(page, mine, user.getNo());
-            request.setAttribute("items", items);
+        User user = (User) session.getAttribute("user");
+        String[][] applications;
+        System.out.println("admin filter:" + page);
 
-            System.out.println("filteritems" + items[2][0]);
+        try {
+            applications = Application.applications(page, user.getNo(), type);
+            request.setAttribute("applications", applications);
+
+            //长度
+            System.out.println("filter apps" + applications[2][0]);
 //            session.setAttribute("items", items);
         } catch (SQLException e) {
             e.printStackTrace();

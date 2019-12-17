@@ -41,7 +41,7 @@
                         <a href="${pageContext.request.contextPath}/login.jsp" onclick="user.exit()">退出登陆</a>
                     </li>
                     <li >
-                        <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=-1">失物展示</a>
+                        <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=0&mine=1">失物展示</a>
                     </li>
                     <li class="active">
                         <strong>认领审核</strong>

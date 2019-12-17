@@ -24,12 +24,6 @@
 </head>
 <body>
 <%
-
-    String apply_no = request.getParameter("apply_no");
-    if(apply_no != null){
-        Application.delete(Integer.parseInt(apply_no));
-    }
-
     User user = (User) session.getAttribute("user");
 
     int start = Integer.parseInt(request.getParameter("page"));
@@ -37,15 +31,16 @@
     String editInfo = request.getParameter("editInfo");
 //    String editApply = request.getParameter("editApply");
 
-    String[][] applications = new String[3][9];
-    int length = 0;
-    try {
-        applications = Application.applications(start, user.getNo(), type);
-        length = Integer.parseInt(applications[2][0]);
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
+    String[][] applications = (String[][]) request.getAttribute("applications");
+    int length = Integer.parseInt(applications[2][0]);
+
+    String apply_no = request.getParameter("apply_no");
+    if(apply_no != null){
 %>
+<script>
+    alert("删除成功")
+</script>
+<%  } %>
 
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
@@ -189,7 +184,6 @@
                                         <% if(applications[i][7].equals("待审核")){%>
 
                                         <td><input type="button" onclick="window.location.href='applyFor.jsp?page=<%=start%>&type=<%=type%>&item_no=<%=applications[i][8]%>&name=<%=applications[i][1]%>&description=<%=applications[i][2]%>'" value="编辑"></td>
-
                                         <td><a href="${pageContext.request.contextPath}/student/userInfo.jsp?page=<%=start%>&type=<%=type%>&apply_no=<%=applications[i][0]%>"
                                                onclick="return window.confirm('确定删除吗？')">删除</a></td>
                                         <%--                <td><input type="button" onClick="deleteApp()" value="删除"></td>--%>

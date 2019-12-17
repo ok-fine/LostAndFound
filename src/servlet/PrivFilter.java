@@ -31,12 +31,19 @@ public class PrivFilter implements Filter {
 //        System.out.println("getContextPath:" + req.getContextPath());
         System.out.println("url：" + url);
 
-        session.setAttribute("login", "-1");
         String login = (String) session.getAttribute("login");
 
-//        if (login != "1" ) {
-//            request.getRequestDispatcher("/login.jsp").forward(request, response);
-//        }
+        if(!url.equals("/LoginServlet") && !url.equals("/RegisterServlet")){
+            if(login != null){
+                if (login.equals("-1")) {
+                    request.getRequestDispatcher("/login.jsp").forward(request, response);
+                }
+            }else {
+//        if(login == null)
+                session.setAttribute("login", "-1");
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+            }
+        }
 //        for (int i = 0; i < dir.length; i++) {
 //            if (url.startsWith(dir[i])) {
 //                if (user == null) {

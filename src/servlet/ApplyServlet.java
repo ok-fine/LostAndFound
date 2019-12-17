@@ -24,6 +24,8 @@ public class ApplyServlet extends HttpServlet {
 
     //用户提交申请
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
         String time = df.format(new Date());// new Date()为获取当前系统时间
         String reason = request.getParameter("reason");
@@ -44,7 +46,7 @@ public class ApplyServlet extends HttpServlet {
         try {
             int apply_no = Application.apply(user.getNo(), item_no, time, g_time, reason);
 
-            if(type != null){
+            if( !type.equals("null")){
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/userInfo.jsp?page=" + start + "&type=" + type);
             }else {
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/itemInfo.jsp?page=" + start + "&apply_no=" + apply_no);

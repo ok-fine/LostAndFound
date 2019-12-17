@@ -1,5 +1,6 @@
 <%@ page import="entity.User" %>
-<%@ page import="org.omg.PortableInterceptor.INACTIVE" %><%--
+<%@ page import="org.omg.PortableInterceptor.INACTIVE" %>
+<%@ page import="entity.Item" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/12
@@ -28,11 +29,20 @@
     String[][] items = (String[][]) request.getAttribute("items");
     int length = Integer.parseInt(items[2][0]);
 
-    String login = (String) session.getAttribute("login");
-    String admin = (String) session.getAttribute("admin");
+//    String login = (String) session.getAttribute("login");
+//    String admin = (String) session.getAttribute("admin");
     int mine = Integer.parseInt(request.getParameter("mine"));
     //1 - 全部， -1 我的
     //在获取items的时候已经根据mine筛选过了
+
+    String item_no = request.getParameter("item_no");
+    if(item_no != null){
+%>
+<script>
+    alert("删除成功")
+</script>
+
+<%  }
 
     String success = request.getParameter("success");
     if(success != null){
@@ -40,6 +50,7 @@
 <script>
     alert("发布成功")
 </script>
+
 <%  }  %>
 
 <%--欢迎来到湖南大学失物招领处<br>--%>
@@ -78,7 +89,7 @@
                         <div class="ibox-content" style="display: block;">
                             <div class="row">
                                 <div class="col-sm-offset-4 col-sm-3" style="margin-top: 15px;">
-                                    <button onclick="window.location.href = '${pageContext.request.contextPath}/admin/publish.jsp'"  class="btn btn-primary btn-block" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<strong>发布招领</strong>
+                                    <button onclick="window.location.href = '${pageContext.request.contextPath}/admin/publish.jsp?page=<%=start%>&mine=<%=mine%>'"  class="btn btn-primary btn-block" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;<strong>发布招领</strong>
                                     </button>
                                 </div>
                             </div>
@@ -108,17 +119,15 @@
                                 <table class=" table table-bordered table-hover" data-page-size="10">
                                     <thead>
                                     <tr style="text-align: center">
-                                        <td style="width:5%;">失物名称</td>
-                                        <td style="width:15%;">失物描述</td>
-                                        <td style="width:10%;">发布时间</td>
-                                        <td style="width:10%;">发布地点</td>
-                                        <td style="width:5%;">管理员姓名</td>
-                                        <td style="width:10%;">管理员电话</td>
-                                        <td style="width:5%;" colspan="2">操作</td>
+                                        <th style="width:5%;">失物名称</th>
+                                        <th style="width:15%;">失物描述</th>
+                                        <th style="width:10%;">发布时间</th>
+                                        <th style="width:10%;">发布地点</th>
+                                        <th style="width:7%;">管理员姓名</th>
+                                        <th style="width:9%;">管理员电话</th>
+                                        <th style="width:4%;" colspan="2">操作</th>
                                     </tr>
                                     </thead>
-
-
                                     <tbody>
                                     <% if(length == 0 && start == 0) { %>
                                     <tr>
@@ -138,8 +147,9 @@
                                         <td><%=items[i][6]%></td>
 
                                         <% if(items[i][7].equals(String.valueOf(user.getNo()))){ %>
-                                        <td><input type="button" onclick="window.location.href='applyFor.jsp?item_no=<%=items[i][0]%>&name=<%=items[i][1]%>&description=<%=items[i][2]%>'" value="编辑"></td>
-                                        <td><input type="button" onclick="window.location.href='applyFor.jsp?item_no=<%=items[i][0]%>&name=<%=items[i][1]%>&description=<%=items[i][2]%>'" value="删除"></td>
+                                        <td><input type="button" onclick="window.location.href='publish.jsp?item_no=<%=items[i][0]%>&name=<%=items[i][1]%>&description=<%=items[i][2]%>&page=<%=start%>&mine=<%=mine%>'" value="编辑"></td>
+                                        <td><a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=<%=start%>&mine=<%=mine%>&item_no=<%=items[i][0]%>"
+                                               onclick="return window.confirm('确定删除吗？')">删除</a></td>
                                         <% }else { %>
                                         <td colspan="2">无法操作</td>
                                         <% } %>
@@ -154,7 +164,7 @@
                                             if(length < 2) next = start;
                                         %>
                                         <td>第<%=start / 2 + 1%>页</td>
-                                        <td colspan="6">
+                                        <td colspan="7">
                                             <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=<%=front%>&mine=<%=mine%>">上一页</a>
                                             <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=<%=next%>&mine=<%=mine%>">下一页</a>
                                         </td>
