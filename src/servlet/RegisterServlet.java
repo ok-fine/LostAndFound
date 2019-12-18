@@ -1,7 +1,7 @@
 package servlet;
 
-import entity.Item;
 import entity.User;
+import entity.UserMgr;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,7 +44,9 @@ public class RegisterServlet extends HttpServlet {
         user.setPassword(password);
         user.setTel(tel);
 
-        if(user.register()){
+        UserMgr userMgr = new UserMgr(user);
+
+        if(userMgr.register(name, password, tel)){
             session.setAttribute("user", user);
             session.setAttribute("login", "1");
             session.setAttribute("admin", "0");

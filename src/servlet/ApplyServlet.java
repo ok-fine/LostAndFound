@@ -1,14 +1,12 @@
 package servlet;
 
 import db.DBBean;
-import entity.Application;
-import entity.Item;
+import entity.AppMgr;
 import entity.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
-import javax.xml.crypto.Data;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -44,7 +42,7 @@ public class ApplyServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         try {
-            int apply_no = Application.apply(user.getNo(), item_no, time, g_time, reason);
+            int apply_no = AppMgr.apply(user.getNo(), item_no, time, g_time, reason);
 
             if( !type.equals("null")){
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/userInfo.jsp?page=" + start + "&type=" + type);
@@ -70,13 +68,13 @@ public class ApplyServlet extends HttpServlet {
 
         if(opt.equals("pass")){
             try {
-                Application.pass(apply_no, user.getNo());
+                AppMgr.pass(apply_no, user.getNo());
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/index.jsp?page=0");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }else if(opt.equals("refuse")){
-            Application.refuse(apply_no, user.getNo());
+            AppMgr.refuse(apply_no, user.getNo());
             response.sendRedirect(request.getContextPath() + "/admin/index.jsp?page=0");
         }
 

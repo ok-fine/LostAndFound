@@ -1,6 +1,7 @@
 package servlet;
 
 import entity.User;
+import entity.UserMgr;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,7 +36,9 @@ public class StudentServlet extends HttpServlet {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
 
-        user.changeInfo(user_no, name, password, tel);
+        UserMgr userMgr = new UserMgr(user);
+
+        userMgr.changeInfo(user_no, name, password, tel);
         session.setAttribute("user", user);
 
         response.sendRedirect(((HttpServletRequest) request).getContextPath() + "/student/userInfo.jsp?page=" + page + "&type=" + type);

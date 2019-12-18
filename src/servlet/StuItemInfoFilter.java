@@ -7,7 +7,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import entity.Item;
+import db.DBBean;
+import entity.ItemMgr;
 
 @WebFilter("/student/itemInfo.jsp")
 public class StuItemInfoFilter implements Filter {
@@ -20,6 +21,8 @@ public class StuItemInfoFilter implements Filter {
 
         System.out.println("getContextPath" + req.getContextPath());
 
+        int pageNum = DBBean.PageNum;
+
         int page = Integer.parseInt(request.getParameter("page"));
         String[][] items;
 
@@ -27,10 +30,10 @@ public class StuItemInfoFilter implements Filter {
 
         try {
             //得到千古的item
-            items = Item.items(page, 1, 0);
+            items = ItemMgr.items(page, 1, 0);
             request.setAttribute("items", items);
 
-            System.out.println("filteritems" + items[2][0]);
+            System.out.println("filteritems" + items[pageNum][0]);
 //            session.setAttribute("items", items);
         } catch (SQLException e) {
             e.printStackTrace();

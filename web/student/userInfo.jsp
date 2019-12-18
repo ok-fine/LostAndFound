@@ -1,7 +1,5 @@
 <%@ page import="entity.User" %>
-<%@ page import="entity.Application" %>
-<%@ page import="java.sql.SQLException" %>
-<%@ page import="org.omg.PortableInterceptor.INACTIVE" %><%--
+<%@ page import="db.DBBean" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/12
@@ -24,6 +22,8 @@
 </head>
 <body>
 <%
+    int pageNum = DBBean.PageNum;
+
     User user = (User) session.getAttribute("user");
 
     int start = Integer.parseInt(request.getParameter("page"));
@@ -32,7 +32,7 @@
 //    String editApply = request.getParameter("editApply");
 
     String[][] applications = (String[][]) request.getAttribute("applications");
-    int length = Integer.parseInt(applications[2][0]);
+    int length = Integer.parseInt(applications[pageNum][0]);
 
     String apply_no = request.getParameter("apply_no");
     if(apply_no != null){
@@ -201,12 +201,12 @@
                                     <tfoot>
                                     <tr>
                                         <%
-                                            int front = start - 2;
+                                            int front = start - pageNum;
                                             if(front < 0) front = 0;
-                                            int next = start + 2;
-                                            if(length < 2) next = start;
+                                            int next = start + pageNum;
+                                            if(length < pageNum) next = start;
                                         %>
-                                        <td>第<%=start / 2 + 1%>页</td>
+                                        <td>第<%=start / pageNum + 1%>页</td>
                                         <td colspan="8">
                                             <a href="${pageContext.request.contextPath}/student/userInfo.jsp?page=<%=front%>&type=<%=type%>">上一页</a>
                                             <a href="${pageContext.request.contextPath}/student/userInfo.jsp?page=<%=next%>&type=<%=type%>">下一页</a>

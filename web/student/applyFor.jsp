@@ -1,6 +1,5 @@
-<%@ page import="org.omg.PortableInterceptor.INACTIVE" %>
-<%@ page import="entity.Item" %>
-<%@ page import="java.sql.SQLException" %><%--
+<%@ page import="java.sql.SQLException" %>
+<%@ page import="entity.ItemMgr" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/12
@@ -26,7 +25,7 @@
     int item_no = Integer.parseInt(request.getParameter("item_no"));
     String[] info = new String[0];
     try {
-        info = Item.getInfo(item_no);
+        info = ItemMgr.getInfo(item_no);
     } catch (SQLException e) {
         e.printStackTrace();
     }

@@ -2,6 +2,7 @@ package db;
 
 import java.sql.*;
 
+
 public class DBBean {
     /**
      *
@@ -11,6 +12,8 @@ public class DBBean {
     private static Statement stmt = null;
     private static ResultSet rset = null;
     private static PreparedStatement pstmt = null;
+
+    public static int PageNum = 3;
 
     public static Connection getConnection(){
 //        Connection conn = null;

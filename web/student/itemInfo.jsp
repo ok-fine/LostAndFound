@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="entity.User" %>
+<%@ page import="db.DBBean" %>
 <html>
 <head>
     <title>湖南大学失物招领</title>
@@ -26,11 +27,13 @@
 <body >
 
 <%
+    int pageNum = DBBean.PageNum;
+
     User user = (User) session.getAttribute("user");
     int start = Integer.parseInt(request.getParameter("page"));
 
     String[][] items = (String[][]) request.getAttribute("items");
-    int length = Integer.parseInt(items[2][0]);
+    int length = Integer.parseInt(items[pageNum][0]);
 
     String login = (String) session.getAttribute("login");
     String admin = (String) session.getAttribute("admin");
@@ -125,12 +128,12 @@
 
                             <tr>
                                 <%
-                                    int front = start - 2;
+                                    int front = start - pageNum;
                                     if(front < 0) front = 0;
-                                    int next = start + 2;
-                                    if(length < 2) next = start;
+                                    int next = start + pageNum;
+                                    if(length < pageNum) next = start;
                                 %>
-                                <td>第<%=start / 2 + 1%>页</td>
+                                <td>第<%=start / pageNum + 1%>页</td>
                                 <td colspan="6">
                                     <a href="${pageContext.request.contextPath}/student/itemInfo.jsp?page=<%=front%>">上一页</a>
                                     <a href="${pageContext.request.contextPath}/student/itemInfo.jsp?page=<%=next%>">下一页</a>

@@ -1,6 +1,6 @@
 package servlet;
 
-import entity.Application;
+import entity.AppMgr;
 import entity.User;
 
 import javax.servlet.*;
@@ -25,7 +25,7 @@ public class UserInfoFilter implements Filter {
         //删除物品
         String apply_no = request.getParameter("apply_no");
         if(apply_no != null){
-            Application.delete(Integer.parseInt(apply_no));
+            AppMgr.delete(Integer.parseInt(apply_no));
         }
 
         User user = (User) session.getAttribute("user");
@@ -33,7 +33,7 @@ public class UserInfoFilter implements Filter {
         System.out.println("admin filter:" + page);
 
         try {
-            applications = Application.applications(page, user.getNo(), type);
+            applications = AppMgr.applications(page, user.getNo(), type);
             request.setAttribute("applications", applications);
 
             //长度

@@ -6,14 +6,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.swing.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import entity.ItemMgr;
 import entity.User;
-import entity.Item;
 
 @WebServlet("/AdminServlet")
 public class AdminServlet extends HttpServlet {
@@ -35,13 +34,13 @@ public class AdminServlet extends HttpServlet {
         try {
             if(item_no != null){
                 //修改
-                Item.edit(item_no, name, des, time);
+                ItemMgr.edit(item_no, name, des, time);
             }else{
                 //发布
-                Item.publish(name, des, time, address_no, admin_no);
+                ItemMgr.publish(name, des, time, address_no, admin_no);
             }
 
-            response.sendRedirect(request.getContextPath() + "/admin/itemInfo.jsp?page=0&mine=-1&success=1");
+            response.sendRedirect(request.getContextPath() + "/admin/itemInfo.jsp?page=0&mine=1&success=1");
         } catch (SQLException e) {
             e.printStackTrace();
         }

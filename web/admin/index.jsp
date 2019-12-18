@@ -1,5 +1,6 @@
 <%--<jsp:useBean id="orders" scope="" type="java.util.List"/>--%>
-<%@ page import="entity.User" %><%--
+<%@ page import="entity.User" %>
+<%@ page import="db.DBBean" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/10
@@ -24,8 +25,10 @@
     User user = (User) session.getAttribute("user");
     int start = Integer.parseInt(request.getParameter("page"));
 
+    int pageNum = DBBean.PageNum;
+
     String[][] orders = (String[][]) request.getAttribute("orders");
-    int length = Integer.parseInt(orders[2][0]);
+    int length = Integer.parseInt(orders[pageNum][0]);
 
 %>
 

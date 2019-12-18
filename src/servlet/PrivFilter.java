@@ -5,11 +5,6 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import db.DBBean;
-import entity.User;
 
 //@WebFilter(filterName = "PrivFilter")
 /**
@@ -25,25 +20,25 @@ public class PrivFilter implements Filter {
         HttpSession session = (req).getSession();
         String url = req.getRequestURI().substring(req.getContextPath().length());
 
-//        session.setAttribute("pageNum", 2);
-
 //        System.out.println("RequestURI:" + req.getRequestURI());
 //        System.out.println("getContextPath:" + req.getContextPath());
         System.out.println("url：" + url);
 
         String login = (String) session.getAttribute("login");
 
-        if(!url.equals("/LoginServlet") && !url.equals("/RegisterServlet")){
-            if(login != null){
-                if (login.equals("-1")) {
-                    request.getRequestDispatcher("/login.jsp").forward(request, response);
-                }
-            }else {
-//        if(login == null)
+//        if(!url.equals("/LoginServlet") && !url.equals("/RegisterServlet")){
+//            if(login != null){
+//                if (login.equals("-1")) {
+//                    request.getRequestDispatcher("/login.jsp").forward(request, response);
+//                }
+//            }else {
+//
+//            }
+        if(login == null){
                 session.setAttribute("login", "-1");
                 request.getRequestDispatcher("/login.jsp").forward(request, response);
             }
-        }
+//        }
 //        for (int i = 0; i < dir.length; i++) {
 //            if (url.startsWith(dir[i])) {
 //                if (user == null) {

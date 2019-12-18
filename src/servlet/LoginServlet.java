@@ -44,11 +44,13 @@ public class LoginServlet extends HttpServlet {
         user.setName(name);
         user.setPassword(password);
 
+        UserMgr userMgr = new UserMgr(user);
+
 //        HttpServletRequest req = (HttpServletRequest) request;
 //        System.out.println("RequestURI:" + req.getRequestURI());
 //        System.out.println("getContextPath:" + req.getContextPath());
 
-        if(user.login(admin)){
+        if(userMgr.login(admin)){
             System.out.println("login success");
             session.setAttribute("login", "1");
             session.setAttribute("user", user);

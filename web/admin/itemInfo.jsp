@@ -1,6 +1,7 @@
 <%@ page import="entity.User" %>
 <%@ page import="org.omg.PortableInterceptor.INACTIVE" %>
-<%@ page import="entity.Item" %><%--
+<%@ page import="db.DBBean" %>
+<%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/12
@@ -26,8 +27,10 @@
     User user = (User) session.getAttribute("user");
     int start = Integer.parseInt(request.getParameter("page"));
 
+    int pageNum = DBBean.PageNum;
+
     String[][] items = (String[][]) request.getAttribute("items");
-    int length = Integer.parseInt(items[2][0]);
+    int length = Integer.parseInt(items[pageNum][0]);
 
 //    String login = (String) session.getAttribute("login");
 //    String admin = (String) session.getAttribute("admin");
@@ -119,13 +122,13 @@
                                 <table class=" table table-bordered table-hover" data-page-size="10">
                                     <thead>
                                     <tr style="text-align: center">
-                                        <th style="width:5%;">失物名称</th>
+                                        <th style="width:7%;">失物名称</th>
                                         <th style="width:15%;">失物描述</th>
                                         <th style="width:10%;">发布时间</th>
                                         <th style="width:10%;">发布地点</th>
                                         <th style="width:7%;">管理员姓名</th>
-                                        <th style="width:9%;">管理员电话</th>
-                                        <th style="width:4%;" colspan="2">操作</th>
+                                        <th style="width:7%;">管理员电话</th>
+                                        <th style="width:9%;" colspan="2">操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -158,12 +161,12 @@
 
                                     <tr>
                                         <%
-                                            int front = start - 2;
+                                            int front = start - pageNum;
                                             if(front < 0) front = 0;
-                                            int next = start + 2;
-                                            if(length < 2) next = start;
+                                            int next = start + pageNum;
+                                            if(length < pageNum) next = start;
                                         %>
-                                        <td>第<%=start / 2 + 1%>页</td>
+                                        <td>第<%=start / pageNum + 1%>页</td>
                                         <td colspan="7">
                                             <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=<%=front%>&mine=<%=mine%>">上一页</a>
                                             <a href="${pageContext.request.contextPath}/admin/itemInfo.jsp?page=<%=next%>&mine=<%=mine%>">下一页</a>

@@ -1,6 +1,7 @@
 package servlet;
 
-import entity.Item;
+import db.DBBean;
+import entity.ItemMgr;
 import entity.User;
 
 import javax.servlet.*;
@@ -22,21 +23,23 @@ public class AdmItemInfoFilter implements Filter {
 
         System.out.println("getContextPath" + req.getContextPath());
 
+        int pageNum = DBBean.PageNum;
+
         int page = Integer.parseInt(request.getParameter("page"));
         int mine = Integer.parseInt(request.getParameter("mine"));
         System.out.println("itemInfo filter:" + page);
 
         String item_no = request.getParameter("item_no");
         if(item_no != null) {
-            Item.delete(Integer.parseInt(item_no));
+            ItemMgr.delete(Integer.parseInt(item_no));
         }
 
         String[][] items;
         try {
-            items = Item.items(page, mine, user.getNo());
+            items = ItemMgr.items(page, mine, user.getNo());
             request.setAttribute("items", items);
 
-            System.out.println("filteritems" + items[2][0]);
+            System.out.println("filteritems" + items[pageNum][0]);
 //            session.setAttribute("items", items);
         } catch (SQLException e) {
             e.printStackTrace();

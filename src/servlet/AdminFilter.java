@@ -1,6 +1,7 @@
 package servlet;
 
-import entity.Application;
+import db.DBBean;
+import entity.AppMgr;
 import entity.User;
 
 import javax.servlet.*;
@@ -20,16 +21,17 @@ public class AdminFilter implements Filter {
         HttpSession session = req.getSession();
 
         int page = Integer.parseInt(request.getParameter("page"));
+        int pageNum = DBBean.PageNum;
         User user = (User) session.getAttribute("user");
         String[][] orders;
 
         System.out.println("admin filter:" + page);
 
         try {
-            orders = Application.orders(page, user.getNo());
+            orders = AppMgr.orders(page, user.getNo());
             request.setAttribute("orders", orders);
 
-            System.out.println("filteritems" + orders[2][0]);
+            System.out.println("filteritems" + orders[pageNum][0]);
 //            session.setAttribute("items", items);
         } catch (SQLException e) {
             e.printStackTrace();
