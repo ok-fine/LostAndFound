@@ -1,6 +1,7 @@
 <%--<jsp:useBean id="orders" scope="" type="java.util.List"/>--%>
 <%@ page import="entity.User" %>
-<%@ page import="db.DBBean" %><%--
+<%@ page import="db.DBBean" %>
+<%@ page import="entity.SysAdmin" %><%--
   Created by IntelliJ IDEA.
   User: weijieyang
   Date: 2019/12/10
@@ -23,8 +24,9 @@
 
 <%
     User user = (User) session.getAttribute("user");
-    int start = Integer.parseInt(request.getParameter("page"));
+    SysAdmin sysAdmin = (SysAdmin) session.getAttribute("sysAdmin");
 
+    int start = Integer.parseInt(request.getParameter("page"));
     int pageNum = DBBean.PageNum;
 
     String[][] orders = (String[][]) request.getAttribute("orders");
@@ -49,6 +51,10 @@
                     <li class="active">
                         <strong>认领审核</strong>
                     </li>
+                    <%=sysAdmin.getIs_system()%>
+                    <% if(sysAdmin.getIs_system().equals("1")) { %>
+                        <a class="collapse-link" href="sysAdmin.jsp">切换系统管理员</a>
+                    <% } %>
                 </ol>
             </div>
             <div class="col-lg-2">

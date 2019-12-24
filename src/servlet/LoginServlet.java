@@ -62,6 +62,10 @@ public class LoginServlet extends HttpServlet {
                 //找到管理员对应的管理地址编号
                 user.setAddress_no();
 
+                //将user 变成管理员类，通过管理员类来判断是否是管理员
+                SysAdmin sysAdmin = new SysAdmin(user);//获取是否是管理员
+                session.setAttribute("sysAdmin", sysAdmin);
+
                 //page:页数，mine：1全看，-1只看我的
                 response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/admin/itemInfo.jsp?page=0&mine=1");
             }else {

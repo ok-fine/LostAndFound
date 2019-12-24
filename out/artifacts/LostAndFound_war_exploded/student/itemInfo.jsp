@@ -50,7 +50,7 @@
             alert = "认领申请成功";
         } %>
 
-<%=alert%>
+<%--<%=alert%>--%>
     <script type="text/javascript" language="javascript">
         alert("<%=alert%>");
     </script>

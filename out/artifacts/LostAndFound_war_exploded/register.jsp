@@ -31,9 +31,9 @@
 <div class="middle-box text-center loginscreen animated fadeInDown">
     <div>
         <div>
-            <h2 class="logo-name">HNU</h2>
+            <h2 class="logo-name">Register</h2>
         </div>
-        <h3>Register to LAF</h3>
+        <h3>Lost And Found</h3>
         <p>Create account to see it in action.</p>
         <form class="m-t" role="form"  action="RegisterServlet"   method="post" >
             <div class="form-group">

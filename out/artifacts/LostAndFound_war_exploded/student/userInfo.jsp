@@ -94,7 +94,7 @@
 
                                 <div class="row">
                                     <div class="form-group">
-                                        <label for="name">&nbsp;&nbsp;同户姓名：</label>
+                                        <label for="name">&nbsp;&nbsp;用户姓名：</label>
                                         <% if(editInfo != null){ %>
                                         <input id="name" type="text" placeholder="<%=user.getName()%>" name="name" class="form-control" required/>
                                         <% }else { %>
