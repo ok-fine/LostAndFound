@@ -33,7 +33,6 @@
 <script>
     alert("<%=action%>");
 </script>
-<%=action%>
 <% } %>
 
 <div id="wrapper">

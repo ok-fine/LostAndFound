@@ -91,7 +91,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>欢迎管理员<%=user.getName()%></h5>
+                            <h5>欢迎管理员&nbsp;<%=user.getName()%></h5>
                         </div>
 
                         <div class="ibox-content" style="display: block;">
