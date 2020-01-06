@@ -69,13 +69,13 @@ public class ApplyServlet extends HttpServlet {
         if(opt.equals("pass")){
             try {
                 AppMgr.pass(apply_no, user.getNo());
-                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/student/index.jsp?page=0");
+                response.sendRedirect(((HttpServletRequest) request).getContextPath() +  "/admin/index.jsp?page=0&opt=pass");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
         }else if(opt.equals("refuse")){
             AppMgr.refuse(apply_no, user.getNo());
-            response.sendRedirect(request.getContextPath() + "/admin/index.jsp?page=0");
+            response.sendRedirect(request.getContextPath() + "/admin/index.jsp?page=0&opt=refuse");
         }
 
 //        request.getRequestDispatcher("/admin/index.jsp?page=0").forward(request, response);

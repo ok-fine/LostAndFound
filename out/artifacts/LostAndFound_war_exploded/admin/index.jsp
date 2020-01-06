@@ -32,7 +32,13 @@
     String[][] orders = (String[][]) request.getAttribute("orders");
     int length = Integer.parseInt(orders[pageNum][0]);
 
+    String opt = request.getParameter("opt");
+    if(opt != null){
 %>
+<script>
+    alert("操作成功！");
+</script>
+<%  }  %>
 
 <div id="wrapper">
     <nav class="navbar-default navbar-static-side" role="navigation" th:include="nav :: navigation"></nav>
@@ -51,7 +57,7 @@
                     <li class="active">
                         <strong>认领审核</strong>
                     </li>
-                    <%=sysAdmin.getIs_system()%>
+<%--                    <%=sysAdmin.getIs_system()%>--%>
                     <% if(sysAdmin.getIs_system().equals("1")) { %>
                         <a class="collapse-link" href="sysAdmin.jsp">切换系统管理员</a>
                     <% } %>
